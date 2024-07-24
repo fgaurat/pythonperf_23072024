@@ -9,27 +9,24 @@ class Rectangle:
         self.__longueur = longueur # _Rectangle__longueur = longueur
         self.__largeur = largeur
 
-    @property # get
-    def longueur(self):
+    def get_longueur(self):
         """
         return the longueur
         """
         return self.__longueur
-    
-    @property # get
-    def largeur(self):
+
+    def get_largeur(self):
         return self.__largeur
     
-    @longueur.setter
-    def longueur(self,l):
+    def set_longueur(self,l):
         assert l>0
         self.__longueur = l
-    
-    @largeur.setter
-    def largeur(self,l):
+
+    def set_largeur(self,l):
         self.__largeur = l
 
     def get_surface(self):
         return self.__largeur*self.__longueur
 
-    
+    longueur = property(get_longueur,set_longueur,doc="manage longueur property")
+    largeur = property(get_largeur,set_largeur,doc="manage largeur property")
