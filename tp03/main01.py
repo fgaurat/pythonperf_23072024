@@ -1,19 +1,9 @@
 import traceback
-
-
-def divi(a,b):
-    return a/b
-
-def call_divi(a,b):
-    c = divi(a,b)
-
-    return c
-
 def main():
     try:
         a = 2
-        b = 0
-        c = call_divi(a,b)
+        b = int(input("Valeur de b:"))
+        c = a/b
         print(c)
     except ZeroDivisionError as e:
         print("ZeroDivisionError",e,type(e))

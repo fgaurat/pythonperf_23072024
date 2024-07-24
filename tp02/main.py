@@ -32,6 +32,7 @@ def do_log(log_file="defaultlogfile.log",level="INFO"):
 
 # @do_log("logfile.log")
 @do_log(level="DEBUG")
+@do_log
 def say_hello(name):
     s = f"Hello {name}"
     return s
