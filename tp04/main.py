@@ -4,6 +4,9 @@ import sys
 # sys.path.append('')
 
 from Rectangle import Rectangle
+from DataRectangle import DataRectangle
+
+
 # current directory
 # PYTHONPATH
 # python install directory
@@ -20,6 +23,25 @@ def main():
     # print(r.longueur)
     # print(r.largeur)
     print(r.longueur)
+
+    d = DataRectangle(2,3)
+    print(d.longueur,d.largeur,d.get_surface())
+    
+    s = str(d)
+    print(s)
+    s = str(r)
+    print(s)
+
+    r.longueur =12
+    print(r.__dict__)
+    print(50*'-')    
+    r = Rectangle(3,2)
+    r1 = Rectangle(3,2)
+
+    if r==r1: # r.__equal(r1)
+        print("ok")
+    else:
+        print("ko")
 
 def main_01():
     r = Rectangle(3,2)
