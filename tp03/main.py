@@ -5,8 +5,11 @@ def divi(a,b):
     return a/b
 
 def call_divi(a,b):
-    c = divi(a,b)
-
+    try:
+        print('open log file')
+        c = divi(a,b)
+    finally:
+        print('close log file')
     return c
 
 def main():
@@ -15,6 +18,7 @@ def main():
         b = 0
         c = call_divi(a,b)
         print(c)
+
     except ZeroDivisionError as e:
         print("ZeroDivisionError",e,type(e))
         traceback.print_exc()
