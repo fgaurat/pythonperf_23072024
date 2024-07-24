@@ -17,6 +17,7 @@ def main():
     r.set_largeur(24)
     print(r.get_largeur()) # 24
 
+    print(r.get_surface()) # 288
 
 if __name__ == '__main__':
     main()
