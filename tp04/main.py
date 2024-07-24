@@ -43,6 +43,23 @@ def main():
     else:
         print("ko")
 
+    print(Rectangle.get_cpt())
+    print(r.get_cpt())
+    print(r1.get_cpt())
+    print(50*'-')
+
+    r = Rectangle()
+    r1 = Rectangle(3,7)
+    line = "3;7"
+    
+    a,b =[int(i) for i in line.split(";")] 
+    r3 = Rectangle.buildFromStr(a,b)
+
+
+    r2 = Rectangle.buildFromStr("3;7")
+    print(r)
+    print(r1)
+    print(r2)
 def main_01():
     r = Rectangle(3,2)
     # print(r._Rectangle__longueur,r._Rectangle__largeur)
@@ -61,6 +78,6 @@ def main_01():
     print(r.get_largeur()) # 24
 
     print(r.get_surface()) # 288
-
+    
 if __name__ == '__main__':
     main()
