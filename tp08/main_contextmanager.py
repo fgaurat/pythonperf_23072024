@@ -17,7 +17,13 @@ class FileManager:
 
 @contextmanager
 def file_manager(filename,mode):
-    pass
+    try:
+        file = open(filename,mode)
+        print("avant yield")
+        yield file
+        print("après yield")
+    finally:
+        file.close()
 
 
 def main():
@@ -33,10 +39,13 @@ def main():
     
     with FileManager("lefichier2.txt",'w') as f:
         f.write('Hello\n')
-    
-    with file_manager("lefichier2.txt",'w') as f:
-        f.write('Hello\n')
 
+    print("start file_manager")    
+    with file_manager("lefichier2.txt",'w') as f:
+        print("start write")    
+        f.write('Hello\n')
+        print("end write")    
+    print("end file_manager")    
 
 if __name__ == '__main__':
     main()
