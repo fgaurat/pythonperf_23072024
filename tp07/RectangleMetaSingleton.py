@@ -1,5 +1,20 @@
-from ICalcGeo import ICalcGeo
-class Rectangle(ICalcGeo):
+
+
+class Singleton(type):
+
+    __instance = None
+    
+    def __call__(self,*args,**kwargs): 
+        
+        if self.__instance is None:
+            self.__instance = super().__call__(*args,**kwargs)
+        else:
+            self.__instance.__init__(*args,**kwargs)
+        
+        return self.__instance 
+        
+
+class RectangleMetaSingleton(metaclass=Singleton):
     # __slots__ = ("__longueur", "__largeur")
     __cpt = 0
 
@@ -8,8 +23,8 @@ class Rectangle(ICalcGeo):
         assert longueur>0 and largeur>0  
         # if longueur<=0 or largeur<=0:
         #     raise Exception('mauvaises valeurs pour longueur ou largeur')
-        Rectangle.__cpt+= 1
-        self.__longueur = longueur # _Rectangle__longueur = longueur
+        RectangleMetaSingleton.__cpt+= 1
+        self.__longueur = longueur # _RectangleMetaSingleton__longueur = longueur
         self.__largeur = largeur
 
     @classmethod
@@ -21,7 +36,7 @@ class Rectangle(ICalcGeo):
 
     @staticmethod
     def get_cpt():
-        return Rectangle.__cpt
+        return RectangleMetaSingleton.__cpt
 
     @property # get
     def longueur(self):

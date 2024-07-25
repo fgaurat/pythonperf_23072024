@@ -1,5 +1,4 @@
-from ICalcGeo import ICalcGeo
-class Rectangle(ICalcGeo):
+class Rectangle:
     # __slots__ = ("__longueur", "__largeur")
     __cpt = 0
 

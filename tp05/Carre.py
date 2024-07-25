@@ -15,6 +15,8 @@ class Carre(Rectangle):
     @cote.setter
     def cote(self,c):
         self.__cote = c
+        self.longueur = c
+        self.largeur = c
 
     def __str__(self) -> str:
         return f"{__class__.__name__}({self.cote=})"
