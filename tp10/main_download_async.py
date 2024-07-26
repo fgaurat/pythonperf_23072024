@@ -9,7 +9,8 @@ import httpx
 
 
 async def download(url,log_file):
-    response =  await requests.get(url)
+    # response =  await requests.get(url) FAUX
+    response =  requests.get(url)
     with open(log_file,"w") as f:
         f.write(response.text)
 
