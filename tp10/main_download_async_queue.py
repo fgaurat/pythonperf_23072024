@@ -2,6 +2,7 @@
 import httpx
 import asyncio
 from bs4 import BeautifulSoup
+import time
 
 async def download(queue_download:asyncio.Queue,queue_save:asyncio.Queue):
     while True:
@@ -29,6 +30,8 @@ async def save(queue_save:asyncio.Queue):
 
 
 async def main():
+    start = time.perf_counter()
+
     queue_download = asyncio.Queue()
     queue_save = asyncio.Queue()
     nb_download_workers = 10
@@ -39,7 +42,28 @@ async def main():
     soup = BeautifulSoup(response.text, 'html.parser')
 
     all_files = [url+a['href'] for a in soup.find_all('a') if "apache_logs_" in a['href']]
-    print(all_files)
+    tasks = []
+    
+    for i in range(nb_download_workers):
+        task = asyncio.create_task(download(queue_download,queue_save))
+        tasks.append(task)
+
+    for i in range(nb_save_workers):
+        task = asyncio.create_task(save(queue_save))
+        tasks.append(task)
+
+
+    for url in all_files:
+        queue_download.put_nowait(url)
+
+    await queue_download.join()
+    await queue_save.join()
+    
+    # Stop all workers
+    [task.cancel() for task in tasks]
+    end = time.perf_counter()
+    print(f"{end-start:.3}s")
+    
 
 if __name__ == '__main__':
     asyncio.run(main())
